@@ -32,6 +32,10 @@ Edit `src/config/accessCodes.ts` to change a code or its destination. These are
 client-side navigation codes, not secure authentication: the mappings are
 included in the website's JavaScript bundle.
 
+The landing-page wordmark is implemented in `src/components/MokMetricsLogo.tsx`.
+Its "O" is a scalable stitched baseball, and the surrounding card artwork is
+stored locally under `public/access-cards/`.
+
 ## Project folders
 
 | Folder | Contents |
@@ -43,7 +47,7 @@ included in the website's JavaScript bundle.
 | `src/generated/` | Browser-ready JSON produced by the update scripts. These files are committed so builds do not need to download data. |
 | `data/source/` | Excel and CSV source files that are manually replaced when new baseball data is available. |
 | `data/cache/` | Cached MLB API responses. This folder is local-only and ignored by Git. |
-| `public/` | Static website assets, including team logos and the social-sharing image. |
+| `public/` | Static website assets, including team logos, landing-page baseball cards, and the social-sharing image. |
 | `scripts/` | Data update scripts and the production-site packaging script. |
 | `deploy/` | The server template used when packaging the site for hosting. |
 | `.openai/` | Hosting project metadata. It normally does not need manual changes. |

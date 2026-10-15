@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
 
 :root {
   font-family: 'IBM Plex Sans', Arial, sans-serif;
@@ -36,54 +36,183 @@ button {
 }
 
 .access-page {
+  position: relative;
   display: grid;
-  min-height: 100vh;
-  padding: 24px;
-  background: #f5f4ef;
-  color: #111;
+  min-height: 100svh;
+  padding: clamp(24px, 4vw, 64px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 48%, rgb(255 255 255 / 96%) 0 27%, transparent 58%),
+    linear-gradient(135deg, #f5efe2 0%, #fffdf7 46%, #eee5d3 100%);
+  color: #102a43;
+  isolation: isolate;
   place-items: center;
 }
 
-.access-card {
-  width: min(100%, 520px);
-  padding: clamp(32px, 6vw, 56px);
-  background: #fff;
-  border: 1px solid #d8d7d1;
-  border-radius: 16px;
-  box-shadow: 0 18px 60px rgb(0 0 0 / 8%);
+.access-page::before {
+  position: absolute;
+  z-index: -1;
+  width: min(52vw, 680px);
+  aspect-ratio: 1;
+  border: 1px solid rgb(16 42 67 / 9%);
+  border-radius: 48px;
+  content: '';
+  transform: rotate(45deg);
 }
 
-.access-brand {
-  margin: 0 0 48px;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+.access-card-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  width: min(27vw, 420px);
+  pointer-events: none;
+}
+
+.access-card-rail--left {
+  left: 0;
+}
+
+.access-card-rail--right {
+  right: 0;
+}
+
+.access-player-card {
+  position: absolute;
+  width: clamp(124px, 11.5vw, 178px);
+  height: auto;
+  filter: drop-shadow(0 18px 18px rgb(20 30 40 / 20%));
+  transform-origin: center;
+}
+
+.access-card-rail--left .access-player-card--1 {
+  top: -34px;
+  left: -18px;
+  transform: rotate(-7deg);
+}
+
+.access-card-rail--left .access-player-card--2 {
+  top: 0;
+  right: 4px;
+  transform: rotate(4deg);
+}
+
+.access-card-rail--left .access-player-card--3 {
+  top: 34%;
+  left: -36px;
+  transform: rotate(5deg);
+}
+
+.access-card-rail--left .access-player-card--4 {
+  bottom: -52px;
+  left: -18px;
+  transform: rotate(-5deg);
+}
+
+.access-card-rail--left .access-player-card--5 {
+  right: 8px;
+  bottom: -28px;
+  transform: rotate(6deg);
+}
+
+.access-card-rail--right .access-player-card--1 {
+  top: -34px;
+  right: -18px;
+  transform: rotate(7deg);
+}
+
+.access-card-rail--right .access-player-card--2 {
+  top: 0;
+  left: 4px;
+  transform: rotate(-4deg);
+}
+
+.access-card-rail--right .access-player-card--3 {
+  top: 34%;
+  right: -36px;
+  transform: rotate(-5deg);
+}
+
+.access-card-rail--right .access-player-card--4 {
+  bottom: -52px;
+  right: -18px;
+  transform: rotate(5deg);
+}
+
+.access-card-rail--right .access-player-card--5 {
+  bottom: -28px;
+  left: 8px;
+  transform: rotate(-6deg);
+}
+
+.access-card {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 650px);
+  padding: clamp(38px, 5.5vw, 68px);
+  background: rgb(255 253 247 / 94%);
+  border: 1px solid rgb(16 42 67 / 24%);
+  border-radius: 24px;
+  box-shadow: 0 28px 80px rgb(16 42 67 / 16%);
+  backdrop-filter: blur(12px);
+  text-align: center;
+}
+
+.access-eyebrow {
+  margin: 0 0 24px;
+  color: #b3342e;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 .access-card h1 {
   margin: 0;
-  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1;
+}
+
+.mokmetrics-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #102a43;
+  font-size: clamp(2.25rem, 5.2vw, 4.6rem);
   font-weight: 400;
-  letter-spacing: -0.035em;
-  text-align: left;
+  letter-spacing: 0.025em;
+  line-height: 0.95;
+}
+
+.mokmetrics-logo svg {
+  width: 0.82em;
+  height: 0.82em;
+  margin: 0 0.025em;
+  flex: none;
+  filter: drop-shadow(0 3px 3px rgb(16 42 67 / 13%));
 }
 
 .access-intro {
-  margin: 14px 0 34px;
-  color: #5b5b57;
-  font-size: 1rem;
-  line-height: 1.5;
+  max-width: 470px;
+  margin: 22px auto 42px;
+  color: #526577;
+  font-size: 1.03rem;
+  line-height: 1.55;
 }
 
 .access-form {
   display: grid;
-  gap: 10px;
+  padding-top: 30px;
+  border-top: 1px solid rgb(16 42 67 / 14%);
+  gap: 12px;
+  text-align: left;
 }
 
 .access-form label {
+  margin: 0;
+  color: #102a43;
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.03em;
 }
 
 .access-form__controls {
@@ -94,18 +223,21 @@ button {
 
 .access-form input {
   width: 100%;
-  min-height: 48px;
-  padding: 0 14px;
-  color: #111;
-  background: #fff;
-  border: 1px solid #aaa9a4;
-  border-radius: 8px;
+  min-height: 52px;
+  padding: 0 16px;
+  color: #102a43;
+  background: #fffefb;
+  border: 1px solid #9ba7b1;
+  border-radius: 10px;
   outline: none;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .access-form input:focus {
-  border-color: #111;
-  box-shadow: 0 0 0 3px rgb(17 17 17 / 10%);
+  border-color: #102a43;
+  box-shadow: 0 0 0 3px rgb(16 42 67 / 12%);
 }
 
 .access-form input[aria-invalid='true'] {
@@ -113,21 +245,23 @@ button {
 }
 
 .access-form button {
-  min-height: 48px;
-  padding: 0 20px;
+  min-height: 52px;
+  padding: 0 24px;
   color: #fff;
-  background: #111;
-  border: 1px solid #111;
-  border-radius: 8px;
+  background: #102a43;
+  border: 1px solid #102a43;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: 500;
 }
 
 .access-form button:hover:not(:disabled) {
-  background: #30302e;
+  background: #b3342e;
+  border-color: #b3342e;
 }
 
 .access-form button:focus-visible {
-  outline: 3px solid rgb(17 17 17 / 22%);
+  outline: 3px solid rgb(16 42 67 / 22%);
   outline-offset: 2px;
 }
 
@@ -142,17 +276,68 @@ button {
   font-size: 0.86rem;
 }
 
+@media (max-width: 1100px) {
+  .access-card-rail {
+    width: 210px;
+    opacity: 0.72;
+  }
+
+  .access-player-card {
+    width: 132px;
+  }
+
+  .access-card {
+    width: min(100%, 590px);
+  }
+}
+
+@media (max-width: 760px) {
+  .access-card-rail {
+    width: 110px;
+    opacity: 0.22;
+  }
+
+  .access-player-card {
+    width: 110px;
+  }
+
+  .access-player-card--2,
+  .access-player-card--4,
+  .access-player-card--5 {
+    display: none;
+  }
+
+  .access-card {
+    background: rgb(255 253 247 / 97%);
+  }
+}
+
 @media (max-width: 520px) {
   .access-page {
     padding: 14px;
   }
 
   .access-card {
-    padding: 30px 24px;
+    padding: 34px 24px;
+    border-radius: 18px;
   }
 
-  .access-brand {
-    margin-bottom: 38px;
+  .access-card-rail {
+    display: none;
+  }
+
+  .access-eyebrow {
+    margin-bottom: 20px;
+    font-size: 0.68rem;
+  }
+
+  .mokmetrics-logo {
+    font-size: clamp(2rem, 10.8vw, 3rem);
+  }
+
+  .access-intro {
+    margin: 18px auto 30px;
+    font-size: 0.95rem;
   }
 
   .access-form__controls {
