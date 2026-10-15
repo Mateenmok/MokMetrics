@@ -114,10 +114,10 @@ function StatisticalLeaderboard({
     setMode('top')
     document.title = definition
       ? activeView === 'correlations'
-        ? `Correlation Rankings — ${season} | Baseball Demo`
-        : `${definition.label} Leaders — ${season} | Baseball Demo`
-      : 'Statistic not found | Baseball Demo'
-    return () => { document.title = 'Baseball Demo' }
+        ? `Correlation Rankings — ${season} | MokMetrics`
+        : `${definition.label} Leaders — ${season} | MokMetrics`
+      : 'Statistic not found | MokMetrics'
+    return () => { document.title = 'MokMetrics' }
   }, [activeView, definition, season, statKey])
 
   const allEntries = useMemo(() => {

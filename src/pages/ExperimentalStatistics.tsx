@@ -93,9 +93,9 @@ function ExperimentalStatistics({
 
   useEffect(() => {
     document.title = metric
-      ? `${metric.name} — ${season} | Baseball Demo`
-      : `Experimental Statistics — ${season} | Baseball Demo`
-    return () => { document.title = 'Baseball Demo' }
+      ? `${metric.name} — ${season} | MokMetrics`
+      : `Experimental Statistics — ${season} | MokMetrics`
+    return () => { document.title = 'MokMetrics' }
   }, [metric, season])
 
   useEffect(() => {

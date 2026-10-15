@@ -1,4 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react'
+import { resolveAccessCode } from './config/accessCodes'
 import { MLB_TEAMS, SEASONS, type Season, type TeamName } from './lib/data'
 import PlayerList from './components/PlayerList'
 import LandingPage from './pages/LandingPage'
@@ -21,7 +22,7 @@ const LeadoffSwapAnalysis = lazy(() => import('./pages/LeadoffSwapAnalysis'))
 
 function App() {
   const [route, setRoute] = useState(readAppRoute)
-  const [showLanding, setShowLanding] = useState(route.kind === 'analysis')
+  const [showLanding, setShowLanding] = useState(true)
   const [analysisMode, setAnalysisMode] = useState<'team' | 'league'>('team')
   const [selectedTeam, setSelectedTeam] = useState<TeamName | ''>('')
   const [selectedSeason, setSelectedSeason] = useState<Season>(2026)
@@ -79,6 +80,33 @@ function App() {
     window.scrollTo(0, 0)
   }, [])
 
+  const submitAccessCode = useCallback((code: string) => {
+    const destination = resolveAccessCode(code)
+    if (!destination) return false
+
+    setShowLanding(false)
+    window.scrollTo(0, 0)
+
+    if (destination === 'experimental') {
+      openExperimentalStatistics(selectedSeason)
+      return true
+    }
+
+    if (destination === 'swaps') {
+      openLeadoffSwapAnalysis(selectedSeason)
+      return true
+    }
+
+    window.history.replaceState(null, '', '/')
+    setRoute({ kind: 'analysis' })
+    setAnalysisMode(destination)
+    return true
+  }, [openExperimentalStatistics, openLeadoffSwapAnalysis, selectedSeason])
+
+  if (showLanding) {
+    return <LandingPage onSubmitCode={submitAccessCode} />
+  }
+
   if (route.kind === 'profile') {
     return (
       <Suspense fallback={<p className="profile-loading">Loading player profile…</p>}>
@@ -133,20 +161,9 @@ function App() {
     )
   }
 
-  if (showLanding) {
-    return (
-      <LandingPage
-        onBegin={() => {
-          setShowLanding(false)
-          window.scrollTo(0, 0)
-        }}
-      />
-    )
-  }
-
   return (
     <main className="page-shell">
-      <h1>Baseball Demo</h1>
+      <h1>MokMetrics</h1>
 
       <nav className="analysis-switch" aria-label="Analysis mode">
         <button

@@ -17,6 +17,21 @@ npm run update    # Regenerate every dataset from the source files and MLB API
 npm run build     # Create the production site from the committed generated data
 ```
 
+## Access-code landing page
+
+The landing page accepts these case-insensitive codes:
+
+| Code | Opens |
+| --- | --- |
+| `MM-TEAM` | Team Explorer |
+| `MM-LEADERS` | League Leaders |
+| `MM-RESEARCH` | Experimental Statistics |
+| `MM-SWAPS` | Leadoff Swap Analysis |
+
+Edit `src/config/accessCodes.ts` to change a code or its destination. These are
+client-side navigation codes, not secure authentication: the mappings are
+included in the website's JavaScript bundle.
+
 ## Project folders
 
 | Folder | Contents |
@@ -24,7 +39,7 @@ npm run build     # Create the production site from the committed generated data
 | `src/pages/` | Complete application screens such as the landing page, player profiles, league leaders, and statistical analysis pages. |
 | `src/components/` | Reusable interface pieces such as selectors, player cards, profile rows, and charts. |
 | `src/lib/` | Data loading, route helpers, rankings, percentiles, and statistical calculations. |
-| `src/config/` | Small hand-maintained configuration files for teams and statistic definitions. |
+| `src/config/` | Hand-maintained access codes, team information, and statistic definitions. |
 | `src/generated/` | Browser-ready JSON produced by the update scripts. These files are committed so builds do not need to download data. |
 | `data/source/` | Excel and CSV source files that are manually replaced when new baseball data is available. |
 | `data/cache/` | Cached MLB API responses. This folder is local-only and ignored by Git. |

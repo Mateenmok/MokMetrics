@@ -25,8 +25,8 @@ function PlayerProfile({ playerId, season, onNavigateHome, onOpenStatistic }: Pl
   const team = profile ? getTeamByAbbreviation(profile.team) : undefined
 
   useEffect(() => {
-    document.title = profile ? `${profile.name} — ${profile.season} | Baseball Demo` : 'Player not found | Baseball Demo'
-    return () => { document.title = 'Baseball Demo' }
+    document.title = profile ? `${profile.name} — ${profile.season} | MokMetrics` : 'Player not found | MokMetrics'
+    return () => { document.title = 'MokMetrics' }
   }, [profile])
 
   function handleHomeLink(event: MouseEvent<HTMLAnchorElement>) {
