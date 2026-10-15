@@ -1,15 +1,15 @@
 import { useEffect, type MouseEvent } from 'react'
-import { getTeamByAbbreviation } from './data'
-import PlayerHeadshot from './PlayerHeadshot'
-import ProfileStatSection from './ProfileStatSection'
-import { PLAYER_SEASONS } from './playerData'
-import { getPlayerProfile } from './playerProfileData'
+import { getTeamByAbbreviation } from '../lib/data'
+import PlayerHeadshot from '../components/PlayerHeadshot'
+import ProfileStatSection from '../components/ProfileStatSection'
+import { PLAYER_SEASONS } from '../lib/playerData'
+import { getPlayerProfile } from '../lib/playerProfileData'
 import {
   BATTED_BALL_STAT_KEYS,
   STANDARD_STAT_KEYS,
   STATCAST_STAT_KEYS,
-} from './profileStatGroups'
-import TeamStatistics from './TeamStatistics'
+} from '../lib/profileStatGroups'
+import TeamStatistics from '../components/TeamStatistics'
 
 type PlayerProfileProps = {
   playerId: number

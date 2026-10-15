@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
-import { MIN_LEADOFF_GAMES } from './leaderboard'
-import { PLAYER_SEASONS, type PlayerSeason } from './playerData'
-import { getPercentileStyle } from './profileStats'
+import { MIN_LEADOFF_GAMES } from '../lib/leaderboard'
+import { PLAYER_SEASONS, type PlayerSeason } from '../lib/playerData'
+import { getPercentileStyle } from '../lib/profileStats'
 
 type TeamStatisticsProps = {
   player?: PlayerSeason

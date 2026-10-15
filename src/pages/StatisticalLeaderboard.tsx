@@ -7,23 +7,23 @@ import {
   type KeyboardEvent,
   type MouseEvent,
 } from 'react'
-import { SEASONS, getTeamByAbbreviation } from './data'
-import PlayerHeadshot from './PlayerHeadshot'
-import { PLAYER_SEASONS, type PlayerSeason } from './playerData'
-import { PLAYER_PROFILES } from './playerProfileData'
-import { getPlayerProfileHref } from './profileRouting'
-import { VISIBLE_PROFILE_STAT_KEYS } from './profileStatGroups'
+import { SEASONS, getTeamByAbbreviation } from '../lib/data'
+import PlayerHeadshot from '../components/PlayerHeadshot'
+import { PLAYER_SEASONS, type PlayerSeason } from '../lib/playerData'
+import { PLAYER_PROFILES } from '../lib/playerProfileData'
+import { getPlayerProfileHref } from '../lib/profileRouting'
+import { VISIBLE_PROFILE_STAT_KEYS } from '../lib/profileStatGroups'
 import {
   PROFILE_STAT_BY_KEY,
   PROFILE_STAT_INDEX_BY_KEY,
   formatProfileStatValue,
   getPercentileStyle,
   type ProfileStatDefinition,
-} from './profileStats'
-import { STAT_DEFINITIONS } from './statDefinitions'
-import StatisticalScatterplot from './StatisticalScatterplot'
-import CorrelationRankings, { type CorrelationRanking } from './CorrelationRankings'
-import { analyzeRelationship } from './statistics'
+} from '../lib/profileStats'
+import { STAT_DEFINITIONS } from '../lib/statDefinitions'
+import StatisticalScatterplot from '../components/StatisticalScatterplot'
+import CorrelationRankings, { type CorrelationRanking } from '../components/CorrelationRankings'
+import { analyzeRelationship } from '../lib/statistics'
 
 type RankingMode = 'top' | 'bottom'
 type MinimumGames = 20 | 30 | 40

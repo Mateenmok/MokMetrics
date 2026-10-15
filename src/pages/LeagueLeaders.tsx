@@ -16,7 +16,7 @@ import {
   getTeamColor,
   getTextColorOnTeamColor,
   type Season,
-} from './data'
+} from '../lib/data'
 import {
   MIN_LEADOFF_GAMES,
   formatRunsPerGameDelta,
@@ -25,10 +25,10 @@ import {
   getQualifiedLeadoffHitters,
   type LeaderboardEntry,
   type LeaderboardMetric,
-} from './leaderboard'
-import { PLAYER_SEASONS } from './playerData'
-import type { PlayerSeason } from './playerData'
-import { getPlayerProfileHref } from './profileRouting'
+} from '../lib/leaderboard'
+import { PLAYER_SEASONS } from '../lib/playerData'
+import type { PlayerSeason } from '../lib/playerData'
+import { getPlayerProfileHref } from '../lib/profileRouting'
 
 type LeagueLeadersProps = {
   season: Season

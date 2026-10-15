@@ -1,6 +1,6 @@
 import type { MouseEvent } from 'react'
-import { getStatisticLeaderboardHref } from './profileRouting'
-import type { ProfileStatDefinition } from './profileStats'
+import { getStatisticLeaderboardHref } from '../lib/profileRouting'
+import type { ProfileStatDefinition } from '../lib/profileStats'
 
 export type CorrelationRanking = {
   definition: ProfileStatDefinition

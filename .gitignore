@@ -3,3 +3,6 @@ dist/
 data/cache/
 *.tsbuildinfo
 work/
+.DS_Store
+output/
+tmp/

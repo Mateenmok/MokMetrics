@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
-import { MLB_TEAMS, type TeamName } from './data'
+import { MLB_TEAMS, type TeamName } from '../lib/data'
 
 type TeamSelectorProps = {
   value: TeamName | ''

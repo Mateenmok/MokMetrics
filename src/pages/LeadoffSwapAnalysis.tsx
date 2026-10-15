@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { SEASONS, getTeamByAbbreviation, type Season } from './data'
+import { SEASONS, getTeamByAbbreviation, type Season } from '../lib/data'
 import {
   MIN_COMPONENT_GAP,
   MIN_LARGE_COMPONENT_GAPS,
@@ -9,11 +9,11 @@ import {
   getLeadoffSwapPairs,
   type LeadoffSwapPair,
   type SwapPlayer,
-} from './leadoffSwaps'
-import { formatWinningPercentage } from './leaderboard'
-import PlayerHeadshot from './PlayerHeadshot'
-import { getPercentileStyle } from './profileStats'
-import type { PlayerSeason } from './playerData'
+} from '../lib/leadoffSwaps'
+import { formatWinningPercentage } from '../lib/leaderboard'
+import PlayerHeadshot from '../components/PlayerHeadshot'
+import { getPercentileStyle } from '../lib/profileStats'
+import type { PlayerSeason } from '../lib/playerData'
 
 type LeadoffSwapAnalysisProps = {
   season: number

@@ -1,8 +1,8 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react'
-import { MLB_TEAMS, SEASONS, type Season, type TeamName } from './data'
-import PlayerList from './PlayerList'
-import LandingPage from './LandingPage'
-import { PLAYER_SEASONS, type PlayerSeason } from './playerData'
+import { MLB_TEAMS, SEASONS, type Season, type TeamName } from './lib/data'
+import PlayerList from './components/PlayerList'
+import LandingPage from './pages/LandingPage'
+import { PLAYER_SEASONS, type PlayerSeason } from './lib/playerData'
 import {
   getPlayerProfileHref,
   getExperimentalMetricHref,
@@ -10,14 +10,14 @@ import {
   getLeadoffSwapHref,
   getStatisticLeaderboardHref,
   readAppRoute,
-} from './profileRouting'
-import TeamSelector from './TeamSelector'
+} from './lib/profileRouting'
+import TeamSelector from './components/TeamSelector'
 
-const LeagueLeaders = lazy(() => import('./LeagueLeaders'))
-const PlayerProfile = lazy(() => import('./PlayerProfile'))
-const StatisticalLeaderboard = lazy(() => import('./StatisticalLeaderboard'))
-const ExperimentalStatistics = lazy(() => import('./ExperimentalStatistics'))
-const LeadoffSwapAnalysis = lazy(() => import('./LeadoffSwapAnalysis'))
+const LeagueLeaders = lazy(() => import('./pages/LeagueLeaders'))
+const PlayerProfile = lazy(() => import('./pages/PlayerProfile'))
+const StatisticalLeaderboard = lazy(() => import('./pages/StatisticalLeaderboard'))
+const ExperimentalStatistics = lazy(() => import('./pages/ExperimentalStatistics'))
+const LeadoffSwapAnalysis = lazy(() => import('./pages/LeadoffSwapAnalysis'))
 
 function App() {
   const [route, setRoute] = useState(readAppRoute)

@@ -1,7 +1,7 @@
 import type { MouseEvent } from 'react'
 import PlayerHeadshot from './PlayerHeadshot'
-import type { PlayerSeason } from './playerData'
-import { getPlayerProfileHref } from './profileRouting'
+import type { PlayerSeason } from '../lib/playerData'
+import { getPlayerProfileHref } from '../lib/profileRouting'
 
 type PlayerListProps = {
   players: PlayerSeason[]

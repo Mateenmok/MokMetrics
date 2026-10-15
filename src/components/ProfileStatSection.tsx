@@ -1,9 +1,9 @@
 import ProfileStatRow from './ProfileStatRow'
-import type { PlayerProfileData } from './playerProfileData'
+import type { PlayerProfileData } from '../lib/playerProfileData'
 import {
   PROFILE_STAT_BY_KEY,
   PROFILE_STAT_INDEX_BY_KEY,
-} from './profileStats'
+} from '../lib/profileStats'
 
 type ProfileStatSectionProps = {
   profile: PlayerProfileData

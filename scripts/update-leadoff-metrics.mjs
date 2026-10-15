@@ -3,11 +3,11 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const PLAYERS_PATH = path.join(ROOT_DIR, 'src/data/generated/players.json')
-const TEAMS_PATH = path.join(ROOT_DIR, 'src/data/teams.json')
-const OUTPUT_PATH = path.join(ROOT_DIR, 'src/data/generated/leadoff-metrics.json')
-const GAME_RESULTS_OUTPUT_PATH = path.join(ROOT_DIR, 'src/data/generated/leadoff-game-results.json')
-const TEAM_BASELINES_OUTPUT_PATH = path.join(ROOT_DIR, 'src/data/generated/team-season-runs.json')
+const PLAYERS_PATH = path.join(ROOT_DIR, 'src/generated/players.json')
+const TEAMS_PATH = path.join(ROOT_DIR, 'src/config/teams.json')
+const OUTPUT_PATH = path.join(ROOT_DIR, 'src/generated/leadoff-metrics.json')
+const GAME_RESULTS_OUTPUT_PATH = path.join(ROOT_DIR, 'src/generated/leadoff-game-results.json')
+const TEAM_BASELINES_OUTPUT_PATH = path.join(ROOT_DIR, 'src/generated/team-season-runs.json')
 const CACHE_DIR = path.join(ROOT_DIR, 'data/cache/mlb')
 const API_ROOT = 'https://statsapi.mlb.com/api/v1'
 const AGGREGATE_TEAM_PATTERN = /^\d+ Tms$/

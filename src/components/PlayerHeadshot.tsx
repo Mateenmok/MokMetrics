@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getPlayerHeadshotUrl } from './playerHeadshots'
+import { getPlayerHeadshotUrl } from '../lib/playerHeadshots'
 
 type PlayerHeadshotProps = {
   name: string

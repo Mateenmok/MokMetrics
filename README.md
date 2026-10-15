@@ -1,25 +1,56 @@
-# BaseballThesis
+# MokMetrics
 
-A minimal React application for selecting an MLB team and season and viewing matching player-season rows from the project's master workbook.
+A React application for exploring MLB leadoff hitters, player profiles, team outcomes, statistical leaderboards, and leadoff-swap comparisons.
+
+## Quick start
+
+```bash
+npm install
+npm run dev
+```
+
+The three commands to remember are:
+
+```bash
+npm run dev       # Run the website locally
+npm run update    # Regenerate every dataset from the source files and MLB API
+npm run build     # Create the production site from the committed generated data
+```
+
+## Project folders
+
+| Folder | Contents |
+| --- | --- |
+| `src/pages/` | Complete application screens such as the landing page, player profiles, league leaders, and statistical analysis pages. |
+| `src/components/` | Reusable interface pieces such as selectors, player cards, profile rows, and charts. |
+| `src/lib/` | Data loading, route helpers, rankings, percentiles, and statistical calculations. |
+| `src/config/` | Small hand-maintained configuration files for teams and statistic definitions. |
+| `src/generated/` | Browser-ready JSON produced by the update scripts. These files are committed so builds do not need to download data. |
+| `data/source/` | Excel and CSV source files that are manually replaced when new baseball data is available. |
+| `data/cache/` | Cached MLB API responses. This folder is local-only and ignored by Git. |
+| `public/` | Static website assets, including team logos and the social-sharing image. |
+| `scripts/` | Data update scripts and the production-site packaging script. |
+| `deploy/` | The server template used when packaging the site for hosting. |
+| `.openai/` | Hosting project metadata. It normally does not need manual changes. |
 
 ## Data workflow
 
 The Excel source of truth lives at:
 
 ```text
-data/master/player-data.xlsx
+data/source/player-data.xlsx
 ```
 
 To update the website data, replace that workbook and run:
 
 ```bash
-npm run build:data
+npm run update:data
 ```
 
 The command reads the `Combined Data` worksheet, validates the required columns and team abbreviations, converts numeric values, rejects duplicate player/team/season identities, and writes the normalized dataset to:
 
 ```text
-src/data/generated/players.json
+src/generated/players.json
 ```
 
 Each generated workbook row contains:
@@ -37,7 +68,7 @@ Each generated workbook row contains:
 ```
 
 At runtime, those identity and batting fields are joined to the numeric leadoff
-analysis fields in `src/data/generated/leadoff-metrics.json`:
+analysis fields in `src/generated/leadoff-metrics.json`:
 
 ```ts
 {
@@ -49,7 +80,7 @@ analysis fields in `src/data/generated/leadoff-metrics.json`:
 ```
 
 The same generation command also writes one reusable scoring baseline per team
-and season to `src/data/generated/team-season-runs.json`:
+and season to `src/generated/team-season-runs.json`:
 
 ```ts
 {
@@ -78,11 +109,11 @@ therefore reaches the right edge of the scale.
 For an active season such as 2026, the baseline is season-to-date across final
 regular-season games.
 
-Run `npm run build:metrics` to refresh these MLB-derived files; `npm run build`
-then compiles the application with the generated metrics.
+Run `npm run update:metrics` to refresh these MLB-derived files. `npm run build`
+compiles the application from the generated data already committed to the repository.
 
 The same metrics task emits one compact observation for every matched leadoff
-start to `src/data/generated/leadoff-game-results.json`. Schedule rows are
+start to `src/generated/leadoff-game-results.json`. Schedule rows are
 deduplicated by MLB `gamePk`, which prevents postponed or rescheduled listings
 from counting the same game twice.
 
@@ -92,22 +123,22 @@ The profile slice uses two canonical CSV sources plus season-specific Sprint
 Speed and BsR exports:
 
 ```text
-data/master/2023to2026Leadoff_Canonical.csv
-data/master/2023to2026Qualified_Canonical.csv
-data/master/sprint-speed/2023.csv
-data/master/sprint-speed/2024.csv
-data/master/sprint-speed/2025.csv
-data/master/sprint-speed/2026.csv
-data/master/bsr/2023.csv
-data/master/bsr/2024.csv
-data/master/bsr/2025.csv
-data/master/bsr/2026.csv
+data/source/2023to2026Leadoff_Canonical.csv
+data/source/2023to2026Qualified_Canonical.csv
+data/source/sprint-speed/2023.csv
+data/source/sprint-speed/2024.csv
+data/source/sprint-speed/2025.csv
+data/source/sprint-speed/2026.csv
+data/source/bsr/2023.csv
+data/source/bsr/2024.csv
+data/source/bsr/2025.csv
+data/source/bsr/2026.csv
 ```
 
 Generate profile data with:
 
 ```bash
-npm run build:profiles
+npm run update:profiles
 ```
 
 The generator validates that `Season + playerId` is unique in both canonical
@@ -121,10 +152,10 @@ percentiles, while descriptive statistics retain their raw distribution
 percentiles. Generated browser data lives at:
 
 ```text
-src/data/generated/player-profiles.json
+src/generated/player-profiles.json
 ```
 
-The shared stat/category definitions are in `src/data/profile-stats.json`.
+The shared stat/category definitions are in `src/config/profile-stats.json`.
 Player profile URLs use the canonical FanGraphs `playerId` and season, for
 example `/player/19755/2024`. MLBAMID remains the headshot identity.
 
@@ -132,7 +163,7 @@ Every visible profile statistic links to a season-specific statistical
 leaderboard at `/stats/:season/:statKey`. The page supports statistic search,
 season selection, Top 20 and Bottom 20 rankings, a 20/30/40-game minimum,
 optional Win% columns, player-profile links, team-outcome context, and the
-metric definitions maintained in `src/statDefinitions.ts`. For inverse
+metric definitions maintained in `src/lib/statDefinitions.ts`. For inverse
 metrics such as K% and CSW%, Top 20 follows performance direction and therefore
 ranks lower values first.
 
@@ -143,13 +174,13 @@ which that player started in the leadoff spot. These values are derived from
 official MLB schedules and boxscores and written to:
 
 ```text
-src/data/generated/leadoff-metrics.json
+src/generated/leadoff-metrics.json
 ```
 
 Generate missing metrics with:
 
 ```bash
-npm run build:metrics
+npm run update:metrics
 ```
 
 Responses are cached under `data/cache/mlb/` so subsequent runs do not repeatedly
@@ -157,7 +188,7 @@ request historical boxscores. During an active season, refresh its schedule befo
 regenerating the metrics:
 
 ```bash
-npm run build:metrics -- --refresh-season=2026
+npm run update:metrics -- --refresh-season=2026
 ```
 
 The calculation only counts final regular-season games. MLB batting order `100`
@@ -183,17 +214,10 @@ and a two-sided label-permutation p-value.
 The League Leaders view ranks up to 20 players for each supported season by
 team runs per game, team winning percentage, or Δ R/G in their leadoff starts. The
 qualification threshold is centralized as `MIN_LEADOFF_GAMES = 20` in
-`src/leaderboard.ts`. Winning percentage is derived from numeric outcomes as
+`src/lib/leaderboard.ts`. Winning percentage is derived from numeric outcomes as
 `wins / (wins + losses)`.
 
 The scatterplot uses Recharts, the project's only chart dependency. Its X-axis
 can switch between absolute leadoff-start Team R/G and Δ R/G versus the team's
 season average; Team Win% remains on the Y-axis. The chart is loaded only when
 League Leaders is opened so Team Explorer stays on the smaller initial bundle.
-
-## Development
-
-```bash
-npm install
-npm run dev
-```

@@ -1,4 +1,4 @@
-import generatedProfiles from './data/generated/player-profiles.json'
+import generatedProfiles from '../generated/player-profiles.json'
 
 export type PlayerProfileStat = readonly [
   value: number | null,

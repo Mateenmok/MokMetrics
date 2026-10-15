@@ -1,13 +1,13 @@
 import type { CSSProperties, MouseEvent } from 'react'
-import type { PlayerProfileStat } from './playerProfileData'
-import { getStatisticLeaderboardHref } from './profileRouting'
+import type { PlayerProfileStat } from '../lib/playerProfileData'
+import { getStatisticLeaderboardHref } from '../lib/profileRouting'
 import {
   formatOrdinalPercentile,
   formatPercentile,
   formatProfileStatValue,
   getPercentileStyle,
   type ProfileStatDefinition,
-} from './profileStats'
+} from '../lib/profileStats'
 
 type ProfileStatRowProps = {
   definition: ProfileStatDefinition

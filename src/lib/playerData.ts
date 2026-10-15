@@ -1,6 +1,6 @@
-import generatedPlayers from './data/generated/players.json'
-import generatedLeadoffMetrics from './data/generated/leadoff-metrics.json'
-import generatedTeamSeasonRuns from './data/generated/team-season-runs.json'
+import generatedPlayers from '../generated/players.json'
+import generatedLeadoffMetrics from '../generated/leadoff-metrics.json'
+import generatedTeamSeasonRuns from '../generated/team-season-runs.json'
 
 export type PlayerSeason = {
   season: number

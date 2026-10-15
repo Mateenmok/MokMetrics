@@ -1,4 +1,4 @@
-import generatedGameResults from './data/generated/leadoff-game-results.json'
+import generatedGameResults from '../generated/leadoff-game-results.json'
 import { PLAYER_SEASONS, type PlayerSeason } from './playerData'
 import { getPlayerProfile } from './playerProfileData'
 import { PROFILE_STAT_INDEX_BY_KEY } from './profileStats'

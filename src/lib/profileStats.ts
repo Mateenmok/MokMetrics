@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import rawProfileConfig from './data/profile-stats.json'
+import rawProfileConfig from '../config/profile-stats.json'
 
 export type ProfileCategoryId = 'standard' | 'advanced' | 'battedBall' | 'statcast' | 'batTracking'
 export type ProfileStatDirection = 'higher' | 'lower' | 'descriptive'

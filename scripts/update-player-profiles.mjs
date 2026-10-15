@@ -1,15 +1,15 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import profileConfig from '../src/data/profile-stats.json' with { type: 'json' }
+import profileConfig from '../src/config/profile-stats.json' with { type: 'json' }
 import { midrankPercentile, performancePercentile } from './percentiles.mjs'
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const LEADOFF_PATH = path.join(ROOT_DIR, 'data/master/2023to2026Leadoff_Canonical.csv')
-const QUALIFIED_PATH = path.join(ROOT_DIR, 'data/master/2023to2026Qualified_Canonical.csv')
-const SPRINT_SPEED_DIR = path.join(ROOT_DIR, 'data/master/sprint-speed')
-const BSR_DIR = path.join(ROOT_DIR, 'data/master/bsr')
-const OUTPUT_PATH = path.join(ROOT_DIR, 'src/data/generated/player-profiles.json')
+const LEADOFF_PATH = path.join(ROOT_DIR, 'data/source/2023to2026Leadoff_Canonical.csv')
+const QUALIFIED_PATH = path.join(ROOT_DIR, 'data/source/2023to2026Qualified_Canonical.csv')
+const SPRINT_SPEED_DIR = path.join(ROOT_DIR, 'data/source/sprint-speed')
+const BSR_DIR = path.join(ROOT_DIR, 'data/source/bsr')
+const OUTPUT_PATH = path.join(ROOT_DIR, 'src/generated/player-profiles.json')
 const IDENTITY_HEADERS = ['Season', 'Name', 'Tm', 'playerId', 'MLBAMID']
 
 function parseCsv(source) {

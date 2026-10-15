@@ -1,4 +1,4 @@
-import teams from './data/teams.json'
+import teams from '../config/teams.json'
 
 export type Team = {
   id: number

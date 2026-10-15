@@ -11,17 +11,17 @@ import {
   YAxis,
   ZAxis,
 } from 'recharts'
-import { getTeamColor } from './data'
+import { getTeamColor } from '../lib/data'
 import PlayerHeadshot from './PlayerHeadshot'
-import type { PlayerProfileData } from './playerProfileData'
-import type { PlayerSeason } from './playerData'
+import type { PlayerProfileData } from '../lib/playerProfileData'
+import type { PlayerSeason } from '../lib/playerData'
 import {
   formatProfileStatValue,
   getStatAnalysisScale,
   type ProfileStatDefinition,
   type StatAnalysisScale,
-} from './profileStats'
-import { analyzeRelationship } from './statistics'
+} from '../lib/profileStats'
+import { analyzeRelationship } from '../lib/statistics'
 
 type OutcomeMetric = 'runsDelta' | 'winDelta'
 

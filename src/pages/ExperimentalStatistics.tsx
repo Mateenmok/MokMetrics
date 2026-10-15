@@ -1,17 +1,17 @@
 import { useEffect, useMemo, useState, type CSSProperties, type MouseEvent } from 'react'
-import { SEASONS, getTeamByAbbreviation } from './data'
+import { SEASONS, getTeamByAbbreviation } from '../lib/data'
 import {
   EXPERIMENTAL_METRICS,
   EXPERIMENTAL_METRIC_BY_ID,
   getExperimentalComponentLabel,
   getExperimentalMetricAnalysis,
   type ExperimentalMetric,
-} from './experimentalMetrics'
-import PlayerHeadshot from './PlayerHeadshot'
-import type { PlayerSeason } from './playerData'
-import { getPlayerProfileHref } from './profileRouting'
-import { getPercentileStyle, type ProfileStatDefinition } from './profileStats'
-import StatisticalScatterplot from './StatisticalScatterplot'
+} from '../lib/experimentalMetrics'
+import PlayerHeadshot from '../components/PlayerHeadshot'
+import type { PlayerSeason } from '../lib/playerData'
+import { getPlayerProfileHref } from '../lib/profileRouting'
+import { getPercentileStyle, type ProfileStatDefinition } from '../lib/profileStats'
+import StatisticalScatterplot from '../components/StatisticalScatterplot'
 
 type MinimumGames = 20 | 30 | 40
 

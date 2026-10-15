@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDirectory = path.join(root, 'dist')
-const templatePath = path.join(root, 'sites/server.js')
+const templatePath = path.join(root, 'deploy/server-template.js')
 const outputDirectory = path.join(distDirectory, 'server')
 const manifestMarker = '"__EMBEDDED_ASSET_MANIFEST__"'
 

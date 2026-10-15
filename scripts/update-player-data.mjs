@@ -4,9 +4,9 @@ import { fileURLToPath } from 'node:url'
 import readExcelFile from 'read-excel-file/node'
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const WORKBOOK_PATH = path.join(ROOT_DIR, 'data/master/player-data.xlsx')
-const TEAM_CONFIG_PATH = path.join(ROOT_DIR, 'src/data/teams.json')
-const OUTPUT_PATH = path.join(ROOT_DIR, 'src/data/generated/players.json')
+const WORKBOOK_PATH = path.join(ROOT_DIR, 'data/source/player-data.xlsx')
+const TEAM_CONFIG_PATH = path.join(ROOT_DIR, 'src/config/teams.json')
+const OUTPUT_PATH = path.join(ROOT_DIR, 'src/generated/players.json')
 const SHEET_NAME = 'Combined Data'
 const REQUIRED_HEADERS = ['Season', 'Name', 'Tm', 'PA', 'playerId', 'MLBAMID', 'G']
 const AGGREGATE_TEAM_PATTERN = /^\d+ Tms$/
@@ -83,7 +83,7 @@ const selectableWorkbookCodes = workbookTeamCodes.filter((team) => !AGGREGATE_TE
 const unmappedTeamCodes = selectableWorkbookCodes.filter((team) => !mappedTeamCodes.has(team))
 
 if (unmappedTeamCodes.length > 0) {
-  throw new Error(`Workbook team values missing from src/data/teams.json: ${unmappedTeamCodes.join(', ')}`)
+  throw new Error(`Workbook team values missing from src/config/teams.json: ${unmappedTeamCodes.join(', ')}`)
 }
 
 players.sort((a, b) =>
