@@ -3,6 +3,7 @@ import { resolveAccessCode } from './config/accessCodes'
 import { MLB_TEAMS, SEASONS, type Season, type TeamName } from './lib/data'
 import PlayerList from './components/PlayerList'
 import LandingPage from './pages/LandingPage'
+import PersonalLog from './pages/PersonalLog'
 import { PLAYER_SEASONS, type PlayerSeason } from './lib/playerData'
 import {
   getPlayerProfileHref,
@@ -23,6 +24,7 @@ const LeadoffSwapAnalysis = lazy(() => import('./pages/LeadoffSwapAnalysis'))
 function App() {
   const [route, setRoute] = useState(readAppRoute)
   const [showLanding, setShowLanding] = useState(true)
+  const [showPersonalLog, setShowPersonalLog] = useState(false)
   const [analysisMode, setAnalysisMode] = useState<'team' | 'league'>('team')
   const [selectedTeam, setSelectedTeam] = useState<TeamName | ''>('')
   const [selectedSeason, setSelectedSeason] = useState<Season>(2026)
@@ -87,6 +89,12 @@ function App() {
     setShowLanding(false)
     window.scrollTo(0, 0)
 
+    if (destination === 'personal') {
+      window.history.replaceState(null, '', '/personal-log')
+      setShowPersonalLog(true)
+      return true
+    }
+
     if (destination === 'experimental') {
       openExperimentalStatistics(selectedSeason)
       return true
@@ -105,6 +113,19 @@ function App() {
 
   if (showLanding) {
     return <LandingPage onSubmitCode={submitAccessCode} />
+  }
+
+  if (showPersonalLog) {
+    return (
+      <PersonalLog
+        onLock={() => {
+          window.history.replaceState(null, '', '/')
+          setShowPersonalLog(false)
+          setShowLanding(true)
+          window.scrollTo(0, 0)
+        }}
+      />
+    )
   }
 
   if (route.kind === 'profile') {
